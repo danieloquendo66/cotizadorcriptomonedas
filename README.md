@@ -1,3 +1,1 @@
-Cotizador de cripto, consumiendo una API.
-
-puedes verlo en
+Puedes ver el proyecto en: https://cotizadordecriptomonedaspordanieloquendo.netlify.app/
