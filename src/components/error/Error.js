@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from 'prop-types';
 import styled from "@emotion/styled";
 
 const MensajeError = styled.p`
@@ -12,8 +13,8 @@ const MensajeError = styled.p`
   font-family: "Bebas Neue", cursive;
 `;
 
-const Error = ({ mensaje }) => {
-  return <MensajeError> {mensaje} </MensajeError>;
-};
+export const Error = ({ mensaje }) => <MensajeError> {mensaje} </MensajeError>;
 
-export default Error;
+Error.propTypes = {
+  mensaje: PropTypes.string
+};

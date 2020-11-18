@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import imagen from "./cryptomonedas.png";
-import Formulario from "./components/Formulario";
-import Cotizacion from "./components/Cotizacion";
-import Spiner from "./components/Spiner";
 import axios from "axios";
+
+import imagen from "./assets/images/cryptomonedas.png";
+import { Form } from "./containers";
+import { Spiner, Cotizacion } from "./components";
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -39,9 +39,9 @@ const Heading = styled.h1`
   }
 `;
 
-function App() {
-  const [moneda, guardarMoneda] = useState("");
-  const [criptoMoneda, guardarCriptomoneda] = useState("");
+export const App = () => {
+  const [moneda, setMoneda] = useState("");
+  const [criptoMoneda, setCriptoMoneda] = useState("");
   const [resultado, guardarResultado] = useState({});
   const [cargando, guardarCargando] = useState(false);
 
@@ -75,24 +75,22 @@ function App() {
   const componente = cargando ? (
     <Spiner />
   ) : (
-    <Cotizacion resultado={resultado} />
-  );
+      <Cotizacion result={resultado} />
+    );
 
   return (
     <Contenedor>
       <div>
         <Imagen src={imagen} alt="iamgen cripto" />
       </div>
-
       <div>
         <Heading>Cotiza Criptomonedas Al Instante</Heading>
-        <Formulario
-          guardarMoneda={guardarMoneda}
-          guardarCriptomoneda={guardarCriptomoneda}
+        <Form
+          setMoneda={setMoneda}
+          setCriptoMoneda={setCriptoMoneda}
         />
         {componente}
       </div>
     </Contenedor>
   );
-}
-export default App;
+};
