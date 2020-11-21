@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
+import { CurrencyContext } from "../../context";
 
 const ResultadoDiv = styled.div`
   color: #fff;
@@ -22,25 +23,26 @@ const Price = styled.p`
   }
 `;
 
-export const Cotizacion = ({ result }) => {
-  const pruebaResultado = Object.keys(result);
+export const Cotizacion = () => {
+  const { cryptoCurrencySearch } = useContext(CurrencyContext);
+  const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR } = cryptoCurrencySearch ?? {};
 
-  return pruebaResultado ? (
+  return cryptoCurrencySearch ? (
     <ResultadoDiv>
       <Price>
-        El precio es: <span>{result.span}</span>
+        El precio es: <span>{PRICE}</span>
       </Price>
       <Info>
-        Precio mas alto del día: <span>{result.HIGHDAY}</span>
+        Precio mas alto del día: <span>{HIGHDAY}</span>
       </Info>
       <Info>
-        Precio mas bajo del día: <span>{result.LOWDAY}</span>
+        Precio mas bajo del día: <span>{LOWDAY}</span>
       </Info>
       <Info>
-        Variacion últimas 24 horas: <span>{result.CHANGEPCT24HOUR}</span>
+        Variacion últimas 24 horas: <span>{CHANGEPCT24HOUR}</span>
       </Info>
       <Info>
-        Última Actualización: <span>{result.PRICE}</span>
+        Última Actualización: <span>{PRICE}</span>
       </Info>
     </ResultadoDiv>
   ) : null;
