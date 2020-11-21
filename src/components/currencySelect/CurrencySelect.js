@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { PropTypes } from 'prop-types';
 import styled from "@emotion/styled";
+import { CurrencyContext } from "../../context";
+import { MONEDAS } from "../../shared";
 
 const Label = styled.label`
   font-family: "Bebas Neue", cursive;
@@ -22,21 +24,15 @@ const Select = styled.select`
   font-size: 1.2rem;
 `;
 
-export const CurrencySelect = ({ id = 'currencySelect', label, initialState, options, onChange }) => {
-  const [state, setState] = useState(initialState ?? '');
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setState(value);
-    onChange(value);
-  };
+export const CurrencySelect = ({ id = 'currencySelect', label }) => {
+  const { currency, handleCurrencyChange } = useContext(CurrencyContext);
 
   return (
     <div>
       <Label htmlFor={id}>{label}</Label>
-      <Select id={id} onChange={handleChange} value={state}>
+      <Select id={id} onChange={handleCurrencyChange} value={currency}>
         <option value="">- Seleccione -</option>
-        {Object.entries(options).map((option) => (
+        {Object.entries(MONEDAS).map((option) => (
           <option key={option[0]} value={option[0]}>
             {option[1]}
           </option>

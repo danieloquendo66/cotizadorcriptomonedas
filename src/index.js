@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { App } from './App';
 import reportWebVitals from './reportWebVitals';
+import { CurrencyContextProvider } from './context/CurrencyContext';
+import { Wrapper } from './containers';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CurrencyContextProvider>
+      <Wrapper />
+    </CurrencyContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
